@@ -1,29 +1,50 @@
-import Foundation
+import struct Foundation.TimeInterval
+import class Foundation.Timer
+import class Foundation.RunLoop
 import OpenParkingBase
-
-import OpenParkingDresden
-import OpenParkingBasel
-import OpenParkingDeutscheBahn
 
 public class Importer {
     let datasources: [Datasource]
+    let db: Database
+    let runInterval: TimeInterval
+    var timer: Timer?
 
-    public init() {
-        let deutscheBahnAccessToken = ProcessInfo.processInfo.environment["DEUTSCHEBAHN_TOKEN"] ?? ""
-        self.datasources = [
-            Dresden(),
-            Basel(),
-            DeutscheBahn(accessToken: deutscheBahnAccessToken),
-        ]
+    public init(interval: TimeInterval = 5*60) throws {
+        self.runInterval = interval
+        self.datasources = registeredDatasources()
+        self.db = try Database()
+
+        self.db.save(datasources: self.datasources)
     }
 
-    public func run() {
-        for source in self.datasources {
+    public func stop() throws {
+        self.timer?.invalidate()
+        try self.db.close()
+    }
+
+    // MARK: - Run
+
+    public func runIndefinitely() throws {
+        self.timer = Timer.scheduledTimer(withTimeInterval: self.runInterval, repeats: true) { [weak self] _ in
+            self?.collect()
+        }
+        timer?.fire()
+        RunLoop.main.run(until: .distantFuture)
+    }
+
+    func collect() {
+        // TODO: Set up cities in cities table
+        for datasource in self.datasources {
+            print(datasource.name)
             do {
-                let data = try source.data()
-                print("Found information on \(data.lots.count) lots from \(source.name).")
+                let data = try datasource.data()
+                print("\(data.timestamp): \(data.lots.count)")
             } catch {
-                print(error)
+                if let error = error as? OpenParkingError {
+                    print(error)
+                } else {
+                    print(error)
+                }
             }
         }
     }
