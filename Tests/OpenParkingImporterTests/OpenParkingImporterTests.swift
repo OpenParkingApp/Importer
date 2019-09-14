@@ -6,7 +6,7 @@ final class OpenParkingImporterTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(OpenParkingImporter().text, "Hello, World!")
+//        XCTAssertEqual(OpenParkingImporter().text, "Hello, World!")
     }
 
     static var allTests = [
