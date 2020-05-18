@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -23,7 +23,7 @@ let package = Package(
         .target(
             name: "OpenParkingImporter",
             dependencies: [
-                "PostgresNIO",
+                .product(name: "PostgresNIO", package: "postgres-nio"),
                 "OpenParkingBase",
                 "OpenParkingDresden",
                 "OpenParkingBasel",
