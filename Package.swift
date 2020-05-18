@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "OpenParkingImporter",
     platforms: [
-        .macOS(.v10_12),
+        .macOS(.v10_15),
     ],
     products: [
         .library(
@@ -13,11 +13,11 @@ let package = Package(
             targets: ["OpenParkingImporter"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/postgres-nio", from: "1.0.0-alpha"),
-        .package(path: "../OpenParkingBase"),
-        .package(path: "../Dresden"),
-        .package(path: "../Basel"),
-        .package(path: "../DeutscheBahn"),
+        .package(url: "https://github.com/vapor/postgres-nio", from: "1.1.0"),
+        .package(url: "https://github.com/OpenParkingApp/OpenParkingBase.git", .branch("master")),
+        .package(name: "OpenParkingDresden", url: "https://github.com/OpenParkingApp/Dresden.git", .branch("master")),
+        .package(name: "OpenParkingBasel", url: "https://github.com/OpenParkingApp/Basel.git", .branch("master")),
+        .package(name: "OpenParkingDeutscheBahn", url: "https://github.com/OpenParkingApp/DeutscheBahn.git", .branch("master")),
     ],
     targets: [
         .target(
