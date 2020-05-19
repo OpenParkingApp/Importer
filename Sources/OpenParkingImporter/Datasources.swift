@@ -4,6 +4,7 @@ import OpenParkingBase
 import OpenParkingDresden
 import OpenParkingBasel
 import OpenParkingDeutscheBahn
+import OpenParkingHerrenberg
 
 func registeredDatasources() -> [Datasource] {
     let deutscheBahnAccessToken = ProcessInfo.processInfo.environment["DEUTSCHEBAHN_TOKEN"] ?? ""
@@ -11,5 +12,6 @@ func registeredDatasources() -> [Datasource] {
         Dresden(),
         Basel(),
         DeutscheBahn(accessToken: deutscheBahnAccessToken),
+        Herrenberg(),
     ]
 }

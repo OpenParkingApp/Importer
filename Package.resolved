@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "OpenParkingHerrenberg",
+        "repositoryURL": "https://github.com/OpenParkingApp/Herrenberg.git",
+        "state": {
+          "branch": "master",
+          "revision": "f904a8ef638e9f83bee8e2a390ef523df608a40d",
+          "version": null
+        }
+      },
+      {
         "package": "HTMLString",
         "repositoryURL": "https://github.com/alexaubry/HTMLString",
         "state": {

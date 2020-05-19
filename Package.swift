@@ -18,6 +18,7 @@ let package = Package(
         .package(name: "OpenParkingDresden", url: "https://github.com/OpenParkingApp/Dresden.git", .branch("master")),
         .package(name: "OpenParkingBasel", url: "https://github.com/OpenParkingApp/Basel.git", .branch("master")),
         .package(name: "OpenParkingDeutscheBahn", url: "https://github.com/OpenParkingApp/DeutscheBahn.git", .branch("master")),
+        .package(name: "OpenParkingHerrenberg", url: "https://github.com/OpenParkingApp/Herrenberg.git", .branch("master")),
     ],
     targets: [
         .target(
@@ -28,6 +29,7 @@ let package = Package(
                 "OpenParkingDresden",
                 "OpenParkingBasel",
                 "OpenParkingDeutscheBahn",
+                "OpenParkingHerrenberg",
             ]),
         .target(
             name: "opimporter",
